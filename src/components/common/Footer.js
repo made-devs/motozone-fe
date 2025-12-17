@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="col-span-1 md:col-span-1">
             <h2 className="text-3xl font-black uppercase tracking-tighter mb-6">
-              Mechanic<span className="text-signal">.Pro</span>
+              TJM<span className="text-signal">.Motozone</span>
             </h2>
             <p className="text-neutral-400 text-sm leading-relaxed mb-6">
               Bengkel modern dengan standar presisi tinggi. Menggabungkan
@@ -20,7 +20,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               {/* Social Icons Placeholder */}
-              {["IG", "FB", "YT", "WA"].map((social) => (
+              {['IG', 'FB', 'YT', 'WA'].map((social) => (
                 <a
                   key={social}
                   href="#"
@@ -38,7 +38,7 @@ export default function Footer() {
               Menu
             </h3>
             <ul className="space-y-4 text-neutral-400 text-sm">
-              {["Home", "Layanan", "Booking", "Tentang Kami", "Karir"].map(
+              {['Home', 'Layanan', 'Booking', 'Tentang Kami', 'Karir'].map(
                 (item) => (
                   <li key={item}>
                     <Link
