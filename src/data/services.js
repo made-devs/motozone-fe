@@ -1,0 +1,42 @@
+export const servicesData = [
+  {
+    id: '01',
+    category: 'MAINTENANCE',
+    title: 'Routine Service',
+    desc: 'Servis berkala standar TJM dengan 24 poin inspeksi mendalam untuk menjaga reliabilitas mesin harian.',
+    price: '150.000',
+    duration: '45 - 60 Menit',
+    image: '/oli.webp', // Pastikan file ada di public/
+    tags: ['Matic', 'Sport', 'Cub'],
+  },
+  {
+    id: '02',
+    category: 'PERFORMANCE',
+    title: 'Dyno & Remap',
+    desc: 'Kalibrasi ECU untuk kurva tenaga yang lebih padat dan responsif. Optimal untuk motor standar maupun modifikasi.',
+    price: '750.000',
+    duration: '90 - 120 Menit',
+    image: '/remap.png',
+    tags: ['Injeksi Only'],
+  },
+  {
+    id: '03',
+    category: 'ENGINE',
+    title: 'Engine Blueprinting',
+    desc: 'Bore up, porting polish, dan kalibrasi komponen mesin dengan presisi milimeter untuk performa balap.',
+    price: 'Custom',
+    duration: '3 - 14 Hari',
+    image: '/zx25r.jpg',
+    tags: ['High Performance'],
+  },
+  {
+    id: '04',
+    category: 'CHASSIS',
+    title: 'Braking & Suspension',
+    desc: 'Upgrade sistem pengereman dan setting suspensi (re-valving/spring) untuk handling yang lebih tajam.',
+    price: '200.000',
+    duration: '60 Menit',
+    image: '/sentul.jpg',
+    tags: ['Safety', 'Handling'],
+  },
+];
