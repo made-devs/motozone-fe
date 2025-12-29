@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand Colors */
+  --color-tjm-yellow: #ffd700;
+  --color-carbon-black: #121212;
+  --color-metallic-gray: #2d2d2d;
+
+  /* Typography */
+  --font-montserrat: var(--font-montserrat);
+  --font-inter: var(--font-inter);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    @apply bg-carbon-black text-white antialiased font-inter;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-montserrat uppercase tracking-tight;
+  }
+
+  /* SmoothScroll (GSAP ScrollSmoother) */
+  #smooth-wrapper {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  #smooth-content {
+    width: 100%;
+    position: relative;
+    /* Jangan kasih overflow: hidden di sini! */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .outline-text {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    color: transparent;
+  }
+}
+
+@layer components {
+  /* Button Industrial Style */
+  .btn-precision {
+    @apply relative overflow-hidden bg-tjm-yellow text-black px-8 py-3 
+           font-bold uppercase transition-transform duration-200 
+           active:scale-95 hover:bg-white;
+  }
+
+  /* Container Standar */
+  .layout-container {
+    @apply max-w-7xl mx-auto px-6;
+  }
+}
+
+/* Custom Scrollbar for Industrial Look */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-carbon-black;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-metallic-gray rounded-full;
 }
