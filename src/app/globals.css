@@ -44,6 +44,30 @@
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
     color: transparent;
   }
+
+  .animate-scanline {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    animation: scanline 8s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    5%,
+    95% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
 }
 
 @layer components {

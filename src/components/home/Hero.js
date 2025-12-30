@@ -131,10 +131,7 @@ export default function Hero() {
           </div>
 
           {/* RIGHT CONTENT: THE MOTOR (Opsi 1 & 2) */}
-          <div
-            className="lg:col-span-5 ml-[-25px] lg:ml-0 relative"
-            data-speed="1.1"
-          >
+          <div className="lg:col-span-5 ml-[-25px]  relative" data-speed="1.1">
             <div
               ref={bikeRef}
               className="relative z-10 transition-transform duration-500 hover:scale-105"
@@ -163,20 +160,7 @@ export default function Hero() {
               </div>
 
               {/* Point 2: Wheel/Suspension Area */}
-              <div className="detail-label hidden md:flex absolute top-[20%] right-[-10%] items-center gap-3">
-                <div className="w-8 h-[1px] bg-tjm-yellow" />
-                <div className="bg-black/80 backdrop-blur-md border border-tjm-yellow/50 p-2 text-right">
-                  <span className="block text-[8px] text-tjm-yellow font-mono uppercase tracking-widest leading-none mb-1">
-                    Standardized
-                  </span>
-                  <span className="text-[10px] text-white font-bold uppercase">
-                    Aero-Dynamics
-                  </span>
-                </div>
-              </div>
-
-              {/* Point 3: Wheel/Suspension Area Mobile */}
-              <div className="detail-label flex md:hidden absolute top-[20%] right-[20%] items-center gap-3">
+              <div className="detail-label flex absolute top-[20%] right-[20%] items-center gap-3">
                 <div className="bg-black/80 backdrop-blur-md border border-tjm-yellow/50 p-2 text-right">
                   <span className="block text-[8px] text-tjm-yellow font-mono uppercase tracking-widest leading-none mb-1">
                     Standardized

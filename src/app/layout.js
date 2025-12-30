@@ -17,9 +17,10 @@ const fontInter = Inter({
 });
 
 export const metadata = {
-  title: "TJM Motozone | We Rebuild, Not Replace",
+  title:
+    "TJM MOTOZONE - Bengkel Motor Premium Indonesia | Dyno, Tuning, Detailing, Rebuild",
   description:
-    "Presisi Selamanya - Spesialis Restorasi Motor Standar TJM Group",
+    "Bengkel motor modern dengan dyno test, remap ECU, suspension rebuild, detailing nano ceramic, tire balancing, helm spa foam+. Garansi 14 hari. Promo grand opening total 2 juta.",
 };
 
 // app/layout.js

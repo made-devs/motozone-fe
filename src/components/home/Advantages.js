@@ -36,8 +36,7 @@ const advantages = [
     label: "PELAPORAN",
     title: "Update Progres via WhatsApp",
     desc: "Anda bisa memantau setiap tahap pengerjaan melalui laporan digital dan foto yang dikirim langsung ke WhatsApp.",
-    image:
-      "/advantage4.webp",
+    image: "/advantage4.webp",
     feature: "Digital Logbook",
   },
   {
@@ -163,9 +162,9 @@ export default function Advantages() {
                 src={advantages[activeTab].image}
                 alt={advantages[activeTab].title}
                 fill
-                className="object-cover opacity-40 grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"
+                className="object-cover opacity-70 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
             </div>
 
             {/* 2. Yellow Ornaments (Corners) */}
@@ -188,11 +187,11 @@ export default function Advantages() {
                 {advantages[activeTab].feature}
               </div>
 
-              <h3 className="text-4xl md:text-7xl font-montserrat font-bold mb-6 uppercase leading-tight">
+              <h3 className="text-4xl md:text-5xl font-montserrat font-bold mb-6 uppercase leading-tight">
                 {advantages[activeTab].title}
               </h3>
 
-              <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl font-inter">
+              <p className="text-gray-300 text-lg leading-relaxed max-w-2xl font-inter">
                 {advantages[activeTab].desc}
               </p>
 

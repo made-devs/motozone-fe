@@ -11,9 +11,9 @@ if (typeof window !== "undefined") {
 }
 
 const menuItems = [
-  { name: "Paket & Layanan", href: "#services" },
-  { name: "Promo", href: "#promo" },
-  { name: "Booking", href: "#booking" },
+  { name: "Paket & Layanan", href: "services" },
+  { name: "Promo", href: "promo" },
+  { name: "Booking", href: "booking" },
   { name: "Komunitas", href: "#community" },
   { name: "Galeri", href: "#gallery" },
   { name: "Tentang", href: "#about" },
