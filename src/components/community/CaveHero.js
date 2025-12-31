@@ -1,24 +1,16 @@
 "use client";
-
-import Image from "next/image";
-import { useRef } from "react";
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import Marquee from "react-fast-marquee";
+import gsap from "gsap";
+import { useRef } from "react";
 
-export default function PageHero({
-  subtitle,
-  titleTop,
-  titleMain,
-  description,
-  bgImage,
-  showMarquee = true,
-}) {
+export default function CaveHero({ data }) {
   const container = useRef();
 
   useGSAP(
     () => {
+      // Animasi garis caution yang memanjang saat masuk
       gsap.from(".caution-bar", { width: 0, duration: 1.5, ease: "expo.out" });
+      // Animasi teks muncul dari bawah
       gsap.from(".reveal", {
         y: 100,
         opacity: 0,
@@ -30,24 +22,21 @@ export default function PageHero({
     { scope: container }
   );
 
-  const marqueeTexts = [
-    "We Rebuild, Not Replace.",
-    "Selesai Hari Ini, Presisi Selamanya.",
-  ];
+  const words = (data?.title ?? "").trim().split(/\s+/);
+  const firstWord = words[0] ?? "";
+  const restWords = words.slice(1).join(" "); // biar gak hilang kalau > 2 kata
 
   return (
     <section
       ref={container}
-      className="relative h-[100svh] min-h-[100svh] flex items-center overflow-hidden"
+      className="relative h-screen flex items-center overflow-hidden"
     >
-      {/* Background Image with Dark Overlay (samain kayak CaveHero) */}
+      {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src={bgImage}
+        <img
+          src={data.image}
           className="w-full h-full object-cover opacity-40"
-          alt="Hero"
-          fill
-          priority
+          alt="Cave"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
       </div>
@@ -63,40 +52,36 @@ export default function PageHero({
         <div className="max-w-5xl">
           <div className="overflow-hidden mb-2">
             <span className="reveal inline-block text-yellow-400 font-montserrat font-bold tracking-[0.3em] uppercase">
-              {subtitle}
+              {data.subtitle}
             </span>
           </div>
 
+          {/* sebelum: overflow-hidden mb-6 */}
           <div className="mb-6 pt-2 pb-3">
             <h1 className="reveal text-6xl md:text-8xl lg:text-9xl font-montserrat font-black uppercase leading-[0.9] tracking-tighter break-words">
-              <span className="block">{titleTop}</span>
-              <span className="block text-yellow-400">{titleMain}</span>
+              <span className="block">{firstWord}</span>
+              {restWords ? (
+                <span className="block text-yellow-400">{restWords}</span>
+              ) : null}
             </h1>
           </div>
 
           <p className="reveal text-zinc-400 font-inter text-lg md:text-xl max-w-xl border-l-4 border-yellow-400 pl-6">
-            {description}
+            {data.description}
           </p>
         </div>
       </div>
 
       {/* Industrial Bottom Decor */}
-      {showMarquee ? (
-        <div className="absolute bottom-0 left-0 w-full h-12 bg-yellow-400 flex items-center overflow-hidden">
-          <Marquee
-            speed={60}
-            gradient={false}
-            className="text-black font-black italic text-sm"
-          >
-            {Array.from({ length: 12 }).map((_, i) => (
-              <span key={i} className="mx-6 whitespace-nowrap">
-                {marqueeTexts[i % marqueeTexts.length]}{" "}
-                <span className="mx-6">•</span>
-              </span>
+      <div className="absolute bottom-0 left-0 w-full h-12 bg-yellow-400 flex items-center overflow-hidden">
+        <div className="flex space-x-8 whitespace-nowrap text-black font-black italic text-sm animate-marquee">
+          {Array(10)
+            .fill("RIDE TOGETHER FIX BETTER • ")
+            .map((t, i) => (
+              <span key={i}>{t}</span>
             ))}
-          </Marquee>
         </div>
-      ) : null}
+      </div>
     </section>
   );
 }

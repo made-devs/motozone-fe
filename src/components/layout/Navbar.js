@@ -11,14 +11,14 @@ if (typeof window !== "undefined") {
 }
 
 const menuItems = [
-  { name: "Paket & Layanan", href: "services" },
-  { name: "Promo", href: "promo" },
-  { name: "Booking", href: "booking" },
-  { name: "Komunitas", href: "#community" },
-  { name: "Galeri", href: "#gallery" },
-  { name: "Tentang", href: "#about" },
-  { name: "Blog", href: "#blog" },
-  { name: "Kontak", href: "#contact" },
+  { name: "Paket & Layanan", href: "/services" },
+  { name: "Promo", href: "/promo" },
+  { name: "Booking", href: "/booking" },
+  { name: "Komunitas", href: "/community" },
+  { name: "Galeri", href: "/gallery" },
+  { name: "Tentang", href: "/about" },
+  { name: "Blog", href: "/blog" },
+  { name: "Kontak", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -91,10 +91,16 @@ export default function Navbar() {
     { scope: navRef, dependencies: [], revertOnUpdate: true }
   );
 
+  console.log(
+    "[Navbar] mounted, promo href =",
+    menuItems.find((m) => m.name === "Promo")?.href
+  );
+
   return (
     <>
       <nav
         ref={navRef}
+        data-navbar-version="2025-12-31"
         className="fixed top-0 left-0 w-full z-[200] transition-all duration-300 pt-6 pb-6"
       >
         <div className="layout-container flex items-center justify-between">

@@ -86,7 +86,7 @@ export default function FeaturedPackages() {
     <section ref={container} className="bg-carbon-black py-24 relative">
       <div className="layout-container mb-16">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-[2px] bg-tjm-yellow" />
+          <div className="w-10 h-0.5 bg-tjm-yellow" />
           <span className="text-tjm-yellow font-montserrat font-black text-xs tracking-[0.3em] uppercase">
             Service Menu
           </span>
@@ -109,9 +109,9 @@ export default function FeaturedPackages() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
               </div>
 
               {/* Content */}

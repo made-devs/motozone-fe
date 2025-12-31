@@ -129,7 +129,7 @@ export default function ServicesGrid() {
                   src={item.img}
                   alt={item.title}
                   fill
-                  className="object-cover opacity-30 grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0 group-hover:opacity-50"
+                  className="object-cover opacity-50  transition-all duration-700 group-hover:scale-110 group-hover:opacity-70"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-carbon-black via-transparent to-transparent" />
               </div>

@@ -51,7 +51,7 @@ export default function BookingPage() {
         description="Tentukan jadwal tanpa antre. Sistem presisi TJM Motozone."
       />
 
-      <section className="layout-container -mt-10 relative z-30">
+      <section className="layout-container mt-10 relative z-30">
         <div className="grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-8 bg-metallic-gray/10 border border-white/5 p-8 md:p-12 relative">
             {/* Progress Bar GSAP */}

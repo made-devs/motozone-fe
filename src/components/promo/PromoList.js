@@ -8,21 +8,29 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 export default function PromoList() {
-  const container = useRef();
+  const container = useRef(null);
 
   useGSAP(
     () => {
-      gsap.from(".promo-card", {
+      const q = gsap.utils.selector(container);
+
+      gsap.from(q(".promo-card"), {
         y: 50,
         opacity: 0,
         stagger: 0.05,
         duration: 0.8,
         ease: "power3.out",
+        immediateRender: false, // <- penting: cegah state "ngilang" kalau trigger belum jalan
         scrollTrigger: {
           trigger: container.current,
           start: "top 80%",
+          invalidateOnRefresh: true,
         },
       });
+
+      // Paksa recalculation setelah layout/route transition selesai
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+      setTimeout(() => ScrollTrigger.refresh(), 100);
     },
     { scope: container }
   );
