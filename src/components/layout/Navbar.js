@@ -1,167 +1,167 @@
-"use client";
+'use client';
 
-import { useRef, useState, useEffect } from "react";
-import Link from "next/link";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 const menuItems = [
-  { name: "Paket & Layanan", href: "/services" },
-  { name: "Promo", href: "/promo" },
-  { name: "Booking", href: "/booking" },
-  { name: "Komunitas", href: "/community" },
-  { name: "Galeri", href: "/gallery" },
-  { name: "Tentang", href: "/about" },
-  { name: "Blog", href: "/blog" },
-  { name: "Kontak", href: "/contact" },
+  { name: 'Paket', href: '/services' },
+  { name: 'Promo', href: '/promo' },
+  { name: 'Booking', href: '/booking' },
+  { name: 'Komunitas', href: '/community' },
+  { name: 'Galeri', href: '/gallery' },
 ];
 
 export default function Navbar() {
   const navRef = useRef();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Matikan scroll saat menu terbuka
+  // Prevent scroll when mobile menu is open
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    isMenuOpen
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = '');
   }, [isMenuOpen]);
 
   useGSAP(
     () => {
-      const items = gsap.utils.toArray(".nav-anim");
+      const items = gsap.utils.toArray('.nav-anim');
+      gsap.set(items, { autoAlpha: 1 }); // Ensure visibility start
 
-      // Safety: jangan sampai ada yang ke-lock opacity 0
-      gsap.set(items, { autoAlpha: 1 });
-
-      const st = ScrollTrigger.create({
-        start: "top -50",
+      // Scroll Effect: "Solid Tech Deck"
+      ScrollTrigger.create({
+        start: 'top -50',
         onEnter: () => {
           gsap.to(navRef.current, {
-            backgroundColor: "rgba(18, 18, 18, 0.95)",
-            backdropFilter: "blur(10px)",
-            borderBottom: "1px solid rgba(255, 215, 0, 0.2)",
-            paddingTop: "12px",
-            paddingBottom: "12px",
-            duration: 0.4,
+            backgroundColor: '#0a0a0a',
+            borderBottom: '1px solid rgba(255, 215, 0, 0.2)',
+            paddingTop: '12px',
+            paddingBottom: '12px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.8)',
+            duration: 0.3,
           });
         },
         onLeaveBack: () => {
           gsap.to(navRef.current, {
-            backgroundColor: "transparent",
-            backdropFilter: "blur(0px)",
-            borderBottom: "1px solid transparent",
-            paddingTop: "24px",
-            paddingBottom: "24px",
-            duration: 0.4,
+            backgroundColor: 'transparent',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+            paddingTop: '24px',
+            paddingBottom: '24px',
+            boxShadow: 'none',
+            duration: 0.3,
           });
         },
       });
 
-      const reveal = gsap.fromTo(
+      // Intro Animation
+      gsap.fromTo(
         items,
         { y: -20, autoAlpha: 0 },
         {
           y: 0,
           autoAlpha: 1,
           stagger: 0.05,
-          duration: 1,
-          ease: "expo.out",
+          duration: 0.8,
+          ease: 'power3.out',
           delay: 0.2,
-          immediateRender: false,
-          clearProps: "opacity,visibility",
         }
       );
-
-      return () => {
-        reveal.kill();
-        st.kill();
-      };
     },
-    { scope: navRef, dependencies: [], revertOnUpdate: true }
-  );
-
-  console.log(
-    "[Navbar] mounted, promo href =",
-    menuItems.find((m) => m.name === "Promo")?.href
+    { scope: navRef }
   );
 
   return (
     <>
       <nav
         ref={navRef}
-        data-navbar-version="2025-12-31"
-        className="fixed top-0 left-0 w-full z-[200] transition-all duration-300 pt-6 pb-6"
+        className="fixed top-0 left-0 w-full z-[200] pt-6 pb-6 border-b border-white/5 transition-all duration-300 bg-gradient-to-b from-black/80 to-transparent"
       >
         <div className="layout-container flex items-center justify-between">
-          {/* LOGO AREA */}
-          <Link href="/" className="nav-anim flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-tjm-yellow flex items-center justify-center font-black text-black text-xl italic">
-              T
+          {/* LOGO: Clean & Impactful */}
+          <Link href="/" className="nav-anim flex items-center gap-3 group">
+            <div className="relative w-10 h-10 bg-tjm-yellow skew-x-[-10deg] flex items-center justify-center border border-transparent group-hover:border-white transition-all">
+              <span className="font-black text-black text-xl italic font-montserrat skew-x-[10deg]">
+                T
+              </span>
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-xl font-montserrat font-bold tracking-tighter group-hover:text-tjm-yellow transition-colors">
+              <span className="text-2xl font-black italic uppercase tracking-tighter text-white">
                 MOTOZONE
-              </span>
-              <span className="text-[10px] font-mono tracking-[0.3em] text-white/40 uppercase">
-                TJM Group
               </span>
             </div>
           </Link>
 
-          {/* DESKTOP MENU */}
-          <div className="hidden lg:flex items-center gap-6">
-            {menuItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="nav-anim text-[11px] font-montserrat font-bold uppercase tracking-[0.15em] text-white/70 hover:text-tjm-yellow transition-all relative group"
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-tjm-yellow transition-all group-hover:w-full" />
-              </Link>
-            ))}
+          {/* DESKTOP MENU: Clean Lines */}
+          <div className="hidden lg:flex items-center gap-8">
+            {menuItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="nav-anim relative group py-2"
+                >
+                  <span
+                    className={`text-sm font-black italic uppercase tracking-wider transition-colors duration-300 ${
+                      isActive
+                        ? 'text-tjm-yellow'
+                        : 'text-gray-300 group-hover:text-white'
+                    }`}
+                  >
+                    {item.name}
+                  </span>
+
+                  {/* Underline Indicator */}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[2px] bg-tjm-yellow transition-all duration-300 ease-out skew-x-[-20deg] ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+
+                  {/* Glow Effect on Hover */}
+                  <span className="absolute inset-0 bg-tjm-yellow/20 filter blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+                </Link>
+              );
+            })}
           </div>
 
-          {/* CTA BUTTON */}
+          {/* RIGHT SIDE: Action & Mobile Toggle */}
           <div className="nav-anim flex items-center gap-4">
+            {/* Desktop WhatsApp Button */}
             <Link
-              href="https://wa.me/yournumber"
+              href="https://wa.me/6281234567890"
               target="_blank"
-              className="hidden md:flex items-center gap-3 bg-[#25D366]/10 border border-[#25D366]/50 px-5 py-2 text-[#25D366] font-montserrat font-bold text-xs uppercase tracking-widest hover:bg-[#25D366] hover:text-white transition-all group"
+              className="hidden md:flex items-center gap-2 px-5 py-2 border border-tjm-yellow text-tjm-yellow font-black italic uppercase text-sm tracking-wider hover:bg-tjm-yellow hover:text-black transition-all duration-300 skew-x-[-10deg]"
             >
-              <div className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse group-hover:bg-white" />
-              WhatsApp
+              <span className="skew-x-[10deg]">HUBUNGI KAMI</span>
             </Link>
 
-            {/* MOBILE HAMBURGER */}
+            {/* Mobile Menu Toggle */}
             <button
-              className="lg:hidden w-10 h-10 flex flex-col items-end justify-center gap-1.5 relative z-[105]"
+              className="lg:hidden w-10 h-10 flex flex-col justify-center gap-1.5 items-end z-[205]"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <div
-                className={`h-[2px] bg-white transition-all ${
-                  isMenuOpen ? "w-8 rotate-45 translate-y-2" : "w-8"
+              <span
+                className={`block h-[3px] bg-tjm-yellow transition-all duration-300 ${
+                  isMenuOpen ? 'w-8 rotate-45 translate-y-2.5' : 'w-8'
                 }`}
               />
-              <div
-                className={`h-[2px] bg-tjm-yellow transition-all ${
-                  isMenuOpen ? "opacity-0" : "w-5"
+              <span
+                className={`block h-[3px] bg-white transition-all duration-300 ${
+                  isMenuOpen ? 'opacity-0 translate-x-4' : 'w-6'
                 }`}
               />
-              <div
-                className={`h-[2px] bg-white transition-all ${
-                  isMenuOpen ? "w-8 -rotate-45 -translate-y-2" : "w-6"
+              <span
+                className={`block h-[3px] bg-tjm-yellow transition-all duration-300 ${
+                  isMenuOpen ? 'w-8 -rotate-45 -translate-y-2' : 'w-4'
                 }`}
               />
             </button>
@@ -169,32 +169,47 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* MOBILE MENU OVERLAY */}
+      {/* MOBILE MENU: Fullscreen Overlay */}
       <div
-        className={`fixed inset-0 bg-carbon-black z-[150] flex flex-col items-center justify-center transition-all duration-500 ${
+        className={`fixed inset-0 bg-black z-[200] flex flex-col justify-center items-center transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
           isMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            ? 'clip-path-full opacity-100'
+            : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-center gap-8">
-          {menuItems.map((item) => (
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 215, 0, 0.1) 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }}
+        />
+
+        <div className="relative flex flex-col items-center gap-8 z-10 w-full px-6 text-center">
+          {menuItems.map((item, i) => (
             <Link
               key={item.name}
               href={item.href}
               onClick={() => setIsMenuOpen(false)}
-              className="text-2xl font-montserrat font-bold uppercase tracking-widest hover:text-tjm-yellow transition-colors"
+              className={`text-4xl font-black italic uppercase tracking-tighter text-white hover:text-tjm-yellow transition-all duration-300 ${
+                isMenuOpen
+                  ? 'translate-y-0 opacity-100'
+                  : 'translate-y-10 opacity-0'
+              }`}
+              style={{ transitionDelay: `${i * 0.1}s` }}
             >
               {item.name}
             </Link>
           ))}
+
+          <div className="w-12 h-1 bg-tjm-yellow rounded-full my-4" />
+
           <Link
-            href="https://wa.me/yournumber"
-            target="_blank"
-            className="mt-4 bg-[#25D366] text-white px-10 py-4 font-bold uppercase tracking-widest hover:brightness-110 transition-all"
-            onClick={() => setIsMenuOpen(false)}
+            href="https://wa.me/6281234567890"
+            className="text-lg font-mono text-gray-400 hover:text-white tracking-widest uppercase border border-white/20 px-8 py-3 rounded-full"
           >
-            WhatsApp
+            WhatsApp Support
           </Link>
         </div>
       </div>

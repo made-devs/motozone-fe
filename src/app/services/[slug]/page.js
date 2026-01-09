@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import { servicesData } from "@/data/services";
 import PageHero from "@/components/layout/PageHero";
@@ -13,6 +14,11 @@ import ServicesCTA from "@/components/services/ServicesCTA";
 export default function ServiceDetailPage() {
   const { slug } = useParams();
   const data = servicesData[slug];
+
+  // Scroll ke atas setiap slug berubah
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [slug]);
 
   // Jika slug tidak ditemukan
   if (!data) return <div className="py-40 text-center">Service Not Found</div>;
