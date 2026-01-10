@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -43,8 +44,8 @@ export default function Navbar() {
           gsap.to(navRef.current, {
             backgroundColor: '#0a0a0a',
             borderBottom: '1px solid rgba(255, 215, 0, 0.2)',
-            paddingTop: '12px',
-            paddingBottom: '12px',
+            paddingTop: '0px',
+            paddingBottom: '0px',
             boxShadow: '0 4px 20px rgba(0,0,0,0.8)',
             duration: 0.3,
           });
@@ -53,8 +54,8 @@ export default function Navbar() {
           gsap.to(navRef.current, {
             backgroundColor: 'transparent',
             borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-            paddingTop: '24px',
-            paddingBottom: '24px',
+            paddingTop: '0px',
+            paddingBottom: '0px',
             boxShadow: 'none',
             duration: 0.3,
           });
@@ -82,20 +83,21 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 w-full z-[200] pt-6 pb-6 border-b border-white/5 transition-all duration-300 bg-gradient-to-b from-black/80 to-transparent"
+        className="fixed top-0 left-0 w-full z-[200] border-b border-white/5 transition-all duration-300 bg-gradient-to-b from-black/80 to-transparent"
       >
         <div className="layout-container flex items-center justify-between">
-          {/* LOGO: Clean & Impactful */}
+          {/* LOGO: Ganti ke /logo.webp */}
           <Link href="/" className="nav-anim flex items-center gap-3 group">
-            <div className="relative w-10 h-10 bg-tjm-yellow skew-x-[-10deg] flex items-center justify-center border border-transparent group-hover:border-white transition-all">
-              <span className="font-black text-black text-xl italic font-montserrat skew-x-[10deg]">
-                T
-              </span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-2xl font-black italic uppercase tracking-tighter text-white">
-                MOTOZONE
-              </span>
+            <div className="relative w-20 h-20 flex items-center justify-center">
+              {' '}
+              {/* Ubah dari w-10 h-10 ke w-14 h-14 */}
+              <Image
+                src="/logo.webp"
+                alt="TJM Motozone Logo"
+                fill
+                style={{ objectFit: 'contain' }}
+                priority
+              />
             </div>
           </Link>
 

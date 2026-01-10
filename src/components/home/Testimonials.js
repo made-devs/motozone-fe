@@ -1,35 +1,35 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
 const reviews = [
   {
-    quote: "Motor saya balik bertenaga, grafik dyno naik signifikan.",
-    author: "Aditya Pratama",
-    unit: "Kawasaki ZX-25R",
-    service: "Performance Tuning",
-    stat: "+4.2 HP Increase",
+    quote: 'Motor saya balik bertenaga, grafik dyno naik signifikan.',
+    author: 'Aditya Pratama',
+    unit: 'Kawasaki ZX-25R',
+    service: 'Performance Tuning',
+    stat: '+4.2 HP Increase',
   },
   {
-    quote: "Bengkel paling bersih, teknisinya komunikatif.",
-    author: "Rizky Ramadhan",
-    unit: "Honda CBR250RR",
-    service: "General Rebuild",
-    stat: "Standardized Clean",
+    quote: 'Bengkel paling bersih, teknisinya komunikatif.',
+    author: 'Rizky Ramadhan',
+    unit: 'Honda CBR250RR',
+    service: 'General Rebuild',
+    stat: 'Standardized Clean',
   },
   {
-    quote: "Value-nya gila, 100 ribuan dapat bonus seabrek.",
-    author: "Dimas Setiawan",
-    unit: "Yamaha XMAX",
-    service: "Grand Opening Promo",
-    stat: "Rp 2M Value Claimed",
+    quote: 'Value-nya gila, 100 ribuan dapat bonus seabrek.',
+    author: 'Dimas Setiawan',
+    unit: 'Yamaha XMAX',
+    service: 'Grand Opening Promo',
+    stat: 'Rp 2M Value Claimed',
   },
 ];
 
@@ -38,16 +38,16 @@ export default function Testimonials() {
 
   useGSAP(
     () => {
-      gsap.from(".testi-card", {
+      gsap.from('.testi-card', {
         scrollTrigger: {
           trigger: container.current,
-          start: "top 80%",
+          start: 'top 80%',
         },
         y: 60,
         opacity: 0,
         stagger: 0.2,
         duration: 1,
-        ease: "power4.out",
+        ease: 'power4.out',
       });
     },
     { scope: container }
@@ -70,7 +70,8 @@ export default function Testimonials() {
             Verified Logs
           </span>
           <h2 className="text-4xl md:text-5xl font-montserrat font-bold uppercase">
-            SUARA <span className="text-tjm-yellow italic">KOMUNITAS.</span>
+            WHAT THEY SAY ABOUT
+            <span className="text-tjm-yellow italic"> TJM MOTOZONE</span>
           </h2>
         </div>
 

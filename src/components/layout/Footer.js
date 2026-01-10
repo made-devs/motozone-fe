@@ -1,12 +1,13 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from 'next/link';
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
@@ -15,16 +16,16 @@ export default function Footer() {
 
   useGSAP(
     () => {
-      gsap.from(".footer-content", {
+      gsap.from('.footer-content', {
         scrollTrigger: {
           trigger: footerRef.current,
-          start: "top 90%",
+          start: 'top 90%',
         },
         y: 30,
         opacity: 0,
         stagger: 0.1,
         duration: 1,
-        ease: "power2.out",
+        ease: 'power2.out',
       });
     },
     { scope: footerRef }
@@ -41,12 +42,15 @@ export default function Footer() {
           {/* 1. ABOUT SECTION */}
           <div className="footer-content">
             <div className="flex items-center gap-2 mb-6 group">
-              <div className="w-8 h-8 bg-tjm-yellow flex items-center justify-center font-black text-black italic">
-                T
+              <div className="relative w-30 h-30">
+                <Image
+                  src="/logo.webp"
+                  alt="TJM Motozone Logo"
+                  fill
+                  style={{ objectFit: 'contain' }}
+                  priority
+                />
               </div>
-              <span className="text-lg font-montserrat font-bold tracking-tighter">
-                MOTOZONE
-              </span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed font-inter">
               Bagian dari TJM GROUP, kami adalah spesialis restorasi dan
@@ -62,12 +66,12 @@ export default function Footer() {
             </h4>
             <ul className="flex flex-col gap-3">
               {[
-                "Paket & Layanan",
-                "Promo",
-                "Booking",
-                "Komunitas",
-                "Galeri",
-                "Tentang",
+                'Paket & Layanan',
+                'Promo',
+                'Booking',
+                'Komunitas',
+                'Galeri',
+                'Tentang',
               ].map((item) => (
                 <li key={item}>
                   <Link
